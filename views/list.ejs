@@ -1,5 +1,13 @@
 <%- include("header") -%>
 
+  <div class="box createNewList">
+    
+  </div>
+  <form class="box createNewList" action="/createNewList" method="post" autocomplete="off">
+    <input type="text" name="createList" id="" placeholder="Create a new List">
+    <button class="addButton" type="submit" name="list" value="<%= listTitle %>">+</button>
+  </form>
+
   <div class="box" id="heading">
     <h1> <%= listTitle %> </h1>
   </div>
@@ -17,8 +25,13 @@
 
       <form class="item" action="/" method="post">
         <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+        <button class="addButton" type="submit" name="list" value="<%= listTitle %>">+</button>
       </form>
+  </div>
+  <div class="setOfLists">
+    <form action="/setOfLists" method="get">
+      <button class="setOfListsButton" type="submit"><p>Get a set of all lists</p></button>
+    </form>
   </div>
 
 <%- include("footer") -%>

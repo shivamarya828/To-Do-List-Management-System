@@ -1,0 +1,22 @@
+<%- include("header") -%>
+
+<!-- <h1>Hello World</h1> -->
+
+<% if(setOfLists.length == 0){ %>
+    <h1 style="text-align: center; color: #A683E3;">No Lists available</h1>
+<%}else{%>
+
+<div class="box" id="heading">
+    <h1> Click on any of the Lists below </h1>
+</div>
+
+<div class="box">
+    <% for(let i = 0; i<setOfLists.length; i++){ %>
+        <div class="item">
+            <p><a class="anchorText" href="/<%= setOfLists[i].name %>"><%= setOfLists[i].name %></a></p>
+        </div>
+    <% } %>
+    <%}%>
+</div>
+
+<%- include("footer") -%>

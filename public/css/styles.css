@@ -56,7 +56,7 @@ form.item {
   margin-left: 20px;
 }
 
-button {
+button.addButton {
   min-height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -93,4 +93,28 @@ footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+}
+
+.createNewList {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.setOfLists {
+  margin: 0 auto;
+  /* margin-right: auto; */
+}
+
+button.setOfListsButton {
+  margin: 50px auto;
+  display: block;
+  background-color: #E4E9FD;
+  color: #A683E3;
+  font-size: 30px;
+}
+
+.anchorText {
+  color: black;
+  text-decoration: none;
 }

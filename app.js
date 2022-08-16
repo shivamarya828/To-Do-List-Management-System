@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
-mongoose.connect("mongodb+srv://shivamarya828:12345qwert@cluster0.bka9pqk.mongodb.net/todolistDB", {useNewUrlParser: true});
+// mongoose.connect("mongodb+srv://shivamarya828:12345qwert@cluster0.bka9pqk.mongodb.net/todolistDB", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 const itemsSchema = new mongoose.Schema({
   name: String
 });
@@ -54,6 +55,14 @@ app.get("/", function(req, res) {
   })
 });
 
+app.get("/setOfLists", function(req, res){
+  List.find(function(err, founditem){
+    if(!err){
+      res.render("setOfLists", {setOfLists: founditem});
+    }
+  });
+});
+
 app.post("/", function(req, res){
 
   const item = new Item({name: req.body.newItem});
@@ -74,6 +83,27 @@ app.post("/", function(req, res){
       res.redirect("/" + listName);
     });
   }
+});
+
+app.post("/createNewList", function(req, res){
+  // console.log(req.body.createList);
+  //res.redirect("/");
+  List.findOne({name: req.body.createList}, function(err, foundlist){
+    if(!err){
+      if(!foundlist){
+        const list = new List({
+          name: req.body.createList,
+          items: defaultItems
+        });
+        list.save();
+        res.redirect("/" + req.body.createList);
+        // res.render("list", {listTitle: req.body.createList, newListItems: defaultItems});
+      }
+      else{
+        res.redirect("/" + req.body.createList);
+      }
+    }
+  })
 });
 
 app.post("/delete", function(req, res){
@@ -122,3 +152,4 @@ app.get("/about", function(req, res){
 app.listen(process.env.PORT ||  3000, function() {
   console.log("Server started successfully");
 });
+
